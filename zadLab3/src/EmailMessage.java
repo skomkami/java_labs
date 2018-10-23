@@ -71,8 +71,8 @@ public class EmailMessage {
             Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
             Matcher mat = pattern.matcher(cc);
 
-            if(mat.matches()){
-                em.from = cc;
+            if(mat.matches() && em.to.contains(cc)){
+                em.cc.add(cc);
             }else{
                 System.err.println("Invalid email address");
                 System.exit(1);
@@ -84,8 +84,8 @@ public class EmailMessage {
             Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
             Matcher mat = pattern.matcher(bcc);
 
-            if(mat.matches()){
-                em.from = bcc;
+            if(mat.matches() && em.to.contains(bcc)){
+                em.bcc.add(bcc);
             }else{
                 System.err.println("Invalid email address");
                 System.exit(1);
@@ -99,9 +99,11 @@ public class EmailMessage {
     }
 
     public void send(String password){
+        String host = "smtp.poczta.onet.pl";
         Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.onet.poczta.pl");
+        props.put("mail.smtp.host", host);
         props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.ssl.trust", host);
         props.put("mail.smtp.socketFactory.class",
                 "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.auth", "true");
@@ -114,7 +116,6 @@ public class EmailMessage {
         };
 
         Session session = Session.getDefaultInstance(props, auth);
-        System.out.println("Session created");
 
         try
         {
@@ -124,8 +125,6 @@ public class EmailMessage {
             msg.addHeader("Content-Transfer-Encoding", "8bit");
 
             msg.setFrom(new InternetAddress(from));
-//
-//            msg.setReplyTo(InternetAddress.parse(addresses, false));
 
             msg.setSubject(subject, "UTF-8");
 
@@ -137,10 +136,17 @@ public class EmailMessage {
                 msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to.get(i)));
             }
 
-            System.out.println("Message is ready");
-            Transport.send(msg);
+            for (int i=0; i < cc.size(); ++i) {
+                msg.addRecipient(Message.RecipientType.CC, new InternetAddress(cc.get(i)));
+            }
 
+            for (int i=0; i < cc.size(); ++i) {
+                msg.addRecipient(Message.RecipientType.BCC, new InternetAddress(cc.get(i)));
+            }
+
+            Transport.send(msg);
             System.out.println("EMail Sent Successfully!!");
+
         }
         catch (Exception e) {
             e.printStackTrace();
