@@ -25,10 +25,15 @@ public class Polibiusz implements Algorithm{
         String decrypted = "";
         int temp;
 
-        for(int i=0; i<word.length(); i+=2) {
+        for(int i=0; i<word.length()-1; i+=2) {
             temp = (Character.getNumericValue(word.charAt(i))-1)*5 + Character.getNumericValue(word.charAt(i+1))-1;
-            if(temp>8) ++temp;
-            decrypted += Character.toString((char)(temp + 'a'));
+            if(temp<0 || temp>25){
+                decrypted += word.charAt(i);
+                --i;
+            }else {
+                if (temp > 8) ++temp;
+                decrypted += Character.toString((char) (temp + 'a'));
+            }
         }
 
         return decrypted;
