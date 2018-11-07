@@ -27,7 +27,7 @@ public class SubtitlesEditor {
         {
             int firstFrame = Integer.parseInt(m.group());
             if(firstFrame + frameDelay < 0)
-                throw new Exception("Cannot translate that amount of miliseconds, first subtitles starts too fast!!");
+                throw new Exception("Cannot translate that amount of miliseconds, first subtitle starts too fast!!");
         }
 
         br.close();
