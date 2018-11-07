@@ -26,8 +26,11 @@ public class SubtitlesEditor {
         if(m.find())
         {
             int firstFrame = Integer.parseInt(m.group());
-            if(firstFrame + frameDelay < 0)
+            if(firstFrame + frameDelay < 0) {
+                pw.close();
+                br.close();
                 throw new Exception("Cannot translate that amount of miliseconds, first subtitle starts too fast!!");
+            }
         }
 
         br.close();
@@ -38,16 +41,29 @@ public class SubtitlesEditor {
         {
             m = checkLine.matcher(strLine);
             if(!m.matches())
+            {
+                pw.close();
+                br.close();
                 throw new Exception("Line " + line + " does not match the pattern. Arguments probably have wrong format"+ "\n \"" + strLine + "\"");
+            }
+
 
             m = getNumbers.matcher(strLine);
             for(int i=0; i<2; ++i){
-                if(!m.find())
+                if(!m.find()) {
+                    pw.close();
+                    br.close();
                     throw new Exception("Not enought arguments at line: " + line+ "\n \"" + strLine + "\"");
+                }
+
                 frames[i] = Integer.parseInt(m.group());
             }
-            if(frames[0] > frames[1])
+            if(frames[0] > frames[1]) {
+                pw.close();
+                br.close();
                 throw new Exception("Invalid start, stop frames values at line: " + line + "\n \"" + strLine + "\"");
+            }
+
 
             frames[0] += frameDelay;
             frames[1] += frameDelay;
