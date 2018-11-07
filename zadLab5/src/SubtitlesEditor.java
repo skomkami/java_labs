@@ -3,7 +3,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SubtitlesEditor {
-    public static void delay(final String in, final String out,int delay, int fps) throws IOException, Exception {
+    public static void delay(final String in, final String out,int delay, int fps) throws Exception {
         File inFile = new File("./" + in);
         File outFile = new File("./" + out);
 
