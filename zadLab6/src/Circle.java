@@ -27,7 +27,6 @@ public class Circle implements Shape {
         r = radius;
 
         color = new Color(0.5f, 0.5f , 0.5f);
-
         filled = false;
     }
 
@@ -75,8 +74,6 @@ public class Circle implements Shape {
     }
 
     public boolean mouseOver(int mousePosX, int mousePosY) {
-//        int centerX = this.getX() + this.getWidth()/2;
-//        int centerY = this.getY() + this.getHeight()/2;
 
         if(mousePosX>=this.getX() && mousePosX<=this.getX()+getWidth()
                 && mousePosY>=this.getY() && mousePosY<=this.getY()+getHeight())

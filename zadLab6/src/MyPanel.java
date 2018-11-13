@@ -1,7 +1,6 @@
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Ellipse2D;
 import java.util.LinkedList;
 
 public class MyPanel extends Panel implements MouseListener, MouseMotionListener, KeyListener {
@@ -15,9 +14,6 @@ public class MyPanel extends Panel implements MouseListener, MouseMotionListener
         addMouseListener(this);
         addMouseMotionListener(this);
         addKeyListener(this);
-
-        mousePosX = 0;
-        mousePosY = 0;
     }
 
     public void addShape(Shape s) {
@@ -67,7 +63,6 @@ public class MyPanel extends Panel implements MouseListener, MouseMotionListener
 
         mousePosX = e.getX();
         mousePosY = e.getY();
-
     }
 
     @Override
