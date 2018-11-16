@@ -69,10 +69,7 @@ public class Rectangle implements Shape {
     }
 
     public boolean mouseOver(int mousePosX, int mousePosY) {
-        if(mousePosX>=this.getX() && mousePosX<=this.getX()+getWidth()
-            && mousePosY>=this.getY() && mousePosY<=this.getY()+getHeight())
-            return true;
-        else
-            return false;
+        return (mousePosX >= this.getX() && mousePosX <= this.getX() + getWidth()
+                && mousePosY >= this.getY() && mousePosY <= this.getY() + getHeight());
     }
 }

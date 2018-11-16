@@ -42,14 +42,14 @@ public class MyPanel extends Panel implements MouseListener, MouseMotionListener
     @Override
     public void mouseDragged(MouseEvent e) {
 
-        int dx = mousePosX - e.getX();
-        int dy = mousePosY - e.getY();
+        int dx = e.getX() - mousePosX;
+        int dy =  e.getY() - mousePosY;
 
         for(Shape s : shapes) {
             if(s.mouseOver(e.getX(), e.getY())) {
 
-                s.setX(s.getX() - dx);
-                s.setY(s.getY() - dy);
+                s.setX(s.getX() + dx);
+                s.setY(s.getY() + dy);
 
                 int index = shapes.indexOf(s);
                 shapes.remove(index);

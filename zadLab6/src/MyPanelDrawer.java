@@ -10,7 +10,7 @@ public class MyPanelDrawer extends Frame{
 
         Circle circle = new Circle(100, 100, 100);
         Rectangle rectangle = new Rectangle(300, 400, 100, 50);
-        Rectangle rectangle2 = new Rectangle(500, 300, 30, 50);
+        Rectangle rectangle2 = new Rectangle(500, 300, 130, 150);
 
         circle.setFilled(true);
         rectangle.setFilled(true);
