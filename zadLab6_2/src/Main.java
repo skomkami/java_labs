@@ -29,11 +29,13 @@ public class Main extends JFrame {
                 double stopX = Double.parseDouble(stopField.getText());
                 double freq = Double.parseDouble(freqField.getText());
 
-                HashMap<Double, Double> func = new HashMap<>();
-
                 try {
+                    HashMap<Integer, Double> pol = Polynomial.getFromString(p);
+
+                    HashMap<Double, Double> func = new HashMap<>();
+
                     for (Double i = startX; i < stopX; i += freq) {
-                        func.put(i, PolynomialCounter.count(p, i));
+                        func.put(i, Polynomial.count(pol, i));
                     }
 
                     ChartsDrawer cd = new ChartsDrawer();
