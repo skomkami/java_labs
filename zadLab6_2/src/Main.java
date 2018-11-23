@@ -38,14 +38,10 @@ public class Main extends JFrame {
                         func.put(i, Polynomial.count(pol, i));
                     }
 
-                    ChartsDrawer cd = new ChartsDrawer();
-                    Charts chart = new Charts(func);
-
-                    cd.add(chart);
-                    cd.setLocationRelativeTo(null);
-                    cd.setVisible(true);
+                    PolynomialDrawer polyChart = new PolynomialDrawer(func);
 
                 }catch(Exception e) {
+
                     System.err.println(e.getMessage());
                 }
             }

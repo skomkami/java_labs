@@ -69,9 +69,7 @@ public class Main extends Application {
                         func.put(i, Polynomial.count(pol, i));
                     }
 
-                    Stage chartStage = new Stage();
-                    chartStage.setTitle("Chart");
-                    ChartsDrawer chart = new ChartsDrawer(func, chartStage);
+                    PolynomialDrawer polyChart = new PolynomialDrawer(func);
 
 
                 }catch(Exception err) {
