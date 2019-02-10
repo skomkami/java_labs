@@ -3,6 +3,7 @@ import java.awt.event.*;
 import java.util.LinkedList;
 
 public class MyPanel extends Panel implements MouseListener, MouseMotionListener, KeyListener {
+
     private LinkedList<Shape> shapes;
 
     int mousePosX;
